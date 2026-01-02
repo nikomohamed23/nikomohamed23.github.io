@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Niko (Negash Ahmed) | Aspiring Network Engineer</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --primary: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-dim: #94a3b8;
+            --accent: #22c55e;
+            --border: #334155;
+            --progress-bg: #0f172a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.5;
+            padding: 2rem;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Landscape Layout Container */
+        .container {
+            max-width: 1400px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 400px 1fr; /* Fixed Sidebar width, Flexible Content */
+            gap: 2.5rem;
+            align-items: start;
+        }
+
+        /* --- Left Sidebar (Profile Header) --- */
+        .profile-header {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: sticky; /* Sticks to top when scrolling content */
+            top: 2rem;
+            height: calc(100vh - 4rem); /* Full height minus padding */
+            overflow-y: auto; /* Scrollable if screen is short */
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Custom Scrollbar for sidebar */
+        .profile-header::-webkit-scrollbar {
+            width: 6px;
+        }
+        .profile-header::-webkit-scrollbar-thumb {
+            background-color: var(--border);
+            border-radius: 4px;
+        }
+
+        .profile-pic {
+            width: 240px; /* INCREASED SIZE */
+            height: 240px; /* INCREASED SIZE */
+            border-radius: 50%;
+            border: 4px solid var(--primary);
+            margin-bottom: 2rem;
+            object-fit: cover;
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.3);
+        }
+
+        .real-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.5rem;
+        }
+
+        h1 {
+            font-size: 3.5rem; /* Larger for landscape */
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        h1 span {
+            color: var(--primary);
+            text-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            font-weight: 500;
+            margin-bottom: 2rem;
+        }
+
+        .availability-badge {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--primary);
+            color: var(--bg-dark);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            background: #7dd3fc;
+            box-shadow: 0 10px 20px -5px rgba(56, 189, 248, 0.4);
+        }
+
+        /* --- Right Content Area --- */
+        .content-area {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .section-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 1.1rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h2 i {
+            width: 20px;
+            height: 20px;
+        }
+
+        h2::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+            margin-left: 1rem;
+        }
+
+        /* Blog Card */
+        .blog-card {
+            background: var(--bg-dark);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .blog-card:hover {
+            border-color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .blog-title {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .blog-desc {
+            font-size: 0.95rem;
+            color: var(--text-dim);
+        }
+
+        .icon-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-left: 10px;
+        }
+
+        .icon-btn:hover {
+            background: var(--primary);
+            color: var(--bg-dark);
+        }
+
+        /* Mission */
+        .mission-text {
+            font-size: 1.2rem;
+            color: var(--text-main);
+            border-left: 5px solid var(--primary);
+            padding-left: 2rem;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        /* Grid for Projects (2 cols on large screen) */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-item {
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.75rem;
+            transition: transform 0.2s, border-color 0.2s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-item.interactive:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            cursor: pointer;
+        }
+
+        .project-header {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-name {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .future-slot {
+            border: 2px dashed var(--border);
+            background: transparent;
+            opacity: 0.5;
+            align-items: center;
+            justify-content: center;
+            min-height: 150px;
+            color: var(--text-dim);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2.5rem;
+            border-left: 2px solid var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: calc(-2.5rem - 9px);
+            top: 6px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 4px solid var(--bg-card);
+        }
+
+        .timeline-item.future::before {
+            background: transparent;
+            border: 2px dashed var(--border);
+        }
+
+        .timeline-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .item-title {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: #fff;
+        }
+
+        /* Skills */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .skill-badge {
+            background: #0f172a;
+            border: 1px solid var(--border);
+            padding: 0.75rem 1.25rem;
+            border-radius: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+        }
+
+        .skill-badge:hover {
+            border-color: var(--primary);
+            background: rgba(56, 189, 248, 0.05);
+        }
+
+        /* Roadmap */
+        .progress-container {
+            background: var(--progress-bg);
+            height: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .progress-fill {
+            background: var(--primary);
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        /* Contact Grid */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .contact-item {
+            background: #0f172a;
+            padding: 1.25rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            text-decoration: none;
+            color: var(--text-main);
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .contact-item:hover {
+            border-color: var(--primary);
+            background: rgba(56, 189, 248, 0.05);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-bottom: 2rem;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 1100px) {
+            .container {
+                grid-template-columns: 320px 1fr;
+                gap: 2rem;
+            }
+            .profile-pic { width: 200px; height: 200px; }
+            h1 { font-size: 3rem; }
+        }
+
+        @media (max-width: 900px) {
+            body { padding: 1rem; }
+            
+            .container {
+                grid-template-columns: 1fr; /* Stack vertically on tablet/mobile */
+            }
+
+            .profile-header {
+                position: relative; /* Remove sticky on mobile */
+                height: auto;
+                top: 0;
+                margin-bottom: 2rem;
+            }
+
+            .profile-pic {
+                width: 180px;
+                height: 180px;
+            }
+
+            h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Left Sidebar: Profile Header -->
+        <aside class="profile-header">
+            <img src="https://uploads.onecompiler.io/449cnj78x/449cn8zsb/profile.jpg" alt="Negash Ahmed" class="profile-pic">
+            <div class="real-name">Negash Ahmed</div>
+            <h1>I am <span>Niko</span>.</h1>
+            <div class="availability-badge">
+                <i data-lucide="circle" style="fill: var(--accent); width: 10px;"></i> Open to Opportunities
+            </div>
+            <p class="hero-desc">Aspiring Network Engineer & Infrastructure Enthusiast</p>
+            
+            <a href="#" class="download-btn">
+                <i data-lucide="file-text"></i>
+                Download CV
+            </a>
+
+            <!-- Moved quick links here for Sidebar effect -->
+            <div style="margin-top: 2rem; width: 100%; border-top: 1px solid var(--border); padding-top: 1.5rem;">
+               <div style="display: flex; justify-content: center; gap: 15px;">
+                   <a href="https://github.com/nikomohamed23" target="_blank" class="icon-btn" style="border-radius: 50%; width: 40px; height: 40px; margin: 0;">
+                       <i data-lucide="github"></i>
+                   </a>
+                   <a href="#" class="icon-btn" style="border-radius: 50%; width: 40px; height: 40px; margin: 0;">
+                       <i data-lucide="linkedin"></i>
+                   </a>
+                   <a href="mailto:saintniko23@gmail.com" class="icon-btn" style="border-radius: 50%; width: 40px; height: 40px; margin: 0;">
+                       <i data-lucide="mail"></i>
+                   </a>
+               </div>
+            </div>
+        </aside>
+
+        <!-- Right Content Area -->
+        <main class="content-area">
+
+            <!-- Mission Statement -->
+            <div class="section-card">
+                <h2><i data-lucide="target"></i> Mission Statement</h2>
+                <div class="mission-text">
+                    "Bridging the gap between high-stakes operational support and enterprise networking. I am currently transitioning my 2+ years of technical troubleshooting and customer operations experience into a career focused on building resilient, secure, and scalable network architectures."
+                </div>
+            </div>
+
+            <!-- Technical Blog Section -->
+            <div class="section-card">
+                <h2><i data-lucide="book-open"></i> Technical Blog & Write-ups</h2>
+                <div class="blog-card-container">
+                    <a href="#" class="blog-card" id="blogLink">
+                        <div class="blog-info">
+                            <div class="blog-title">
+                                <i data-lucide="layout"></i> Niko's Tech Blog
+                            </div>
+                            <p class="blog-desc">Documenting my journey through CCNA, Homelabs, and Linux SysAdmin tasks.</p>
+                        </div>
+                        <div class="blog-action">
+                            <button class="icon-btn" onclick="copyBlogLink(event)" title="Copy Link">
+                                <i data-lucide="copy" id="copyIcon"></i>
+                            </button>
+                            <div class="icon-btn">
+                                <i data-lucide="arrow-up-right"></i>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Projects -->
+            <div class="section-card">
+                <h2><i data-lucide="terminal"></i> Live Network Projects</h2>
+                <div class="project-grid">
+                    <div class="project-item interactive" onclick="window.open('https://github.com/nikomohamed23', '_blank')">
+                        <div class="project-header">
+                            <span class="project-name"><i data-lucide="server"></i> Homelab: Proxmox</span>
+                            <div class="project-tags">
+                                <span class="tag">Hypervisor</span>
+                                <span class="tag">Linux</span>
+                            </div>
+                        </div>
+                        <p style="font-size: 0.95rem; color: var(--text-dim); flex-grow: 1;">Deployed a local Proxmox environment to simulate enterprise network segments, testing firewall rules and internal routing.</p>
+                    </div>
+
+                    <div class="project-item interactive" onclick="window.open('https://github.com/nikomohamed23', '_blank')">
+                        <div class="project-header">
+                            <span class="project-name"><i data-lucide="shield-check"></i> PFSense Edge Config</span>
+                            <div class="project-tags">
+                                <span class="tag">Routing</span>
+                                <span class="tag">VLANs</span>
+                            </div>
+                        </div>
+                        <p style="font-size: 0.95rem; color: var(--text-dim); flex-grow: 1;">Configured a custom pfSense router with segregated VLANs for IoT, Guest, and Lab traffic to master traffic control and security.</p>
+                    </div>
+
+                    <div class="project-item future-slot">
+                        <i data-lucide="plus-circle" style="margin-right: 8px; width: 16px;"></i> [ RESERVED FOR UPCOMING NETWORK PROJECT ]
+                    </div>
+                </div>
+                <p style="text-align: right; margin-top: 1.5rem; font-size: 0.9rem;">
+                    <a href="https://github.com/nikomohamed23" target="_blank" style="color: var(--primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 5px;">
+                        View More Documentation on GitHub <i data-lucide="external-link" style="width: 14px;"></i>
+                    </a>
+                </p>
+            </div>
+
+            <!-- Toolbox -->
+            <div class="section-card">
+                <h2><i data-lucide="wrench"></i> Networking Toolbox</h2>
+                <div class="skills-container">
+                    <span class="skill-badge"><i data-lucide="network"></i> IPv4/IPv6 Subnetting</span>
+                    <span class="skill-badge"><i data-lucide="cpu"></i> DHCP/DNS Management</span>
+                    <span class="skill-badge"><i data-lucide="layers"></i> Hyper-V / Proxmox</span>
+                    <span class="skill-badge"><i data-lucide="search"></i> Packet Analysis</span>
+                    <span class="skill-badge"><i data-lucide="code"></i> CLI (Bash/IOS)</span>
+                    <span class="skill-badge"><i data-lucide="wifi"></i> Wireless Security</span>
+                </div>
+            </div>
+
+            <!-- Roadmap & Certs -->
+            <div class="section-card">
+                <h2><i data-lucide="award"></i> Technical Roadmap</h2>
+                <div class="cert-progress-wrapper" style="margin-bottom: 2rem;">
+                    <div class="cert-header" style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span class="cert-name" style="font-weight: 700; font-size: 1.1rem;">CompTIA A+</span>
+                        <span class="tag" style="background: var(--accent); color: #fff;">VALIDATED</span>
+                    </div>
+                    <div class="progress-container"><div class="progress-fill" style="width: 100%; background: var(--accent);"></div></div>
+                </div>
+
+                <div class="cert-progress-wrapper">
+                    <div class="cert-header" style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span class="cert-name" style="font-weight: 700; font-size: 1.1rem;">CompTIA Network+</span>
+                        <span class="cert-status" style="font-size: 0.85rem; font-family: 'JetBrains Mono';">30% | Deep Dive into OSI & TCP/IP</span>
+                    </div>
+                    <div class="progress-container"><div class="progress-fill" style="width: 30%;"></div></div>
+                </div>
+            </div>
+
+            <!-- Career -->
+            <div class="section-card">
+                <h2><i data-lucide="briefcase"></i> Career Timeline</h2>
+                <div class="timeline">
+                    <div class="timeline-item future" style="opacity: 0.7;">
+                        <div class="timeline-date">Upcoming</div>
+                        <div class="item-title">Junior Network Engineer / NOC Technician</div>
+                        <div class="item-subtitle">Goal: Transitioning to Enterprise Infrastructure</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Present</div>
+                        <div class="item-title">Network Engineering & Lab Research</div>
+                        <div class="item-subtitle">Self-Directed Study | Washington, DC</div>
+                        <div class="item-details">Focusing on CCNA principles, pfSense routing, and Proxmox virtualization.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Oct 2021 — June 2024</div>
+                        <div class="item-title">Customer Service Specialist (Citgo / 7-Eleven)</div>
+                        <div class="item-subtitle">Rockville, MD</div>
+                        <div class="item-details">Managed daily operations, handled high-pressure troubleshooting, and maintained 100% customer satisfaction.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">June 2021 — May 2023</div>
+                        <div class="item-title">Troubleshooter & Tech Support (Sheger Tech)</div>
+                        <div class="item-subtitle">Addis Ababa, Ethiopia</div>
+                        <div class="item-details">Diagnosed hardware/software issues and provided technical solutions for end-users.</div>
+                    </div>
+                </div>
+            </div>
+
+             <!-- Connect Detailed -->
+            <div class="section-card">
+                <h2><i data-lucide="send"></i> Let's Connect</h2>
+                <div class="contact-grid">
+                    <a href="mailto:saintniko23@gmail.com" class="contact-item">
+                        <i data-lucide="mail"></i>
+                        <div><span style="display: block; font-size: 0.7rem; color: var(--text-dim);">SMTP</span>saintniko23@gmail.com</div>
+                    </a>
+                    <a href="tel:202-713-4709" class="contact-item">
+                        <i data-lucide="phone"></i>
+                        <div><span style="display: block; font-size: 0.7rem; color: var(--text-dim);">VOIP</span>202-713-4709</div>
+                    </a>
+                    <a href="https://github.com/nikomohamed23" target="_blank" class="contact-item">
+                        <i data-lucide="github"></i>
+                        <div><span style="display: block; font-size: 0.7rem; color: var(--text-dim);">REPO</span>nikomohamed23</div>
+                    </a>
+                    <a href="#" class="contact-item"><i data-lucide="linkedin"></i><div><span style="display: block; font-size: 0.7rem; color: var(--text-dim);">LINKEDIN</span>[ Profile ]</div></a>
+                    <a href="#" class="contact-item"><i data-lucide="instagram"></i><div><span style="display: block; font-size: 0.7rem; color: var(--text-dim);">INSTAGRAM</span>[ Handle ]</div></a>
+                    <a href="#" class="contact-item"><i data-lucide="facebook"></i><div><span style="display: block; font-size: 0.7rem; color: var(--text-dim);">FACEBOOK</span>[ Profile ]</div></a>
+                </div>
+            </div>
+
+            <footer>
+                <p>© 2026 Negash Ahmed (Niko) • Building the backbone of the future.</p>
+            </footer>
+
+        </main>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        function copyBlogLink(event) {
+            event.preventDefault();
+            const blogUrl = "https://yourblogurl.com";
+            const el = document.createElement('textarea');
+            el.value = blogUrl;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+
+            const icon = document.getElementById('copyIcon');
+            icon.setAttribute('data-lucide', 'check');
+            icon.style.color = 'var(--accent)';
+            lucide.createIcons();
+
+            setTimeout(() => {
+                icon.setAttribute('data-lucide', 'copy');
+                icon.style.color = '';
+                lucide.createIcons();
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
