@@ -4,9 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Niko (Negash Ahmed) | Aspiring Network Engineer</title>
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
     <style>
         :root {
@@ -37,17 +35,16 @@
             justify-content: center;
         }
 
-        /* Landscape Layout Container */
         .container {
             max-width: 1400px;
             width: 100%;
             display: grid;
-            grid-template-columns: 400px 1fr; /* Fixed Sidebar width, Flexible Content */
+            grid-template-columns: 400px 1fr;
             gap: 2.5rem;
             align-items: start;
         }
 
-        /* --- Left Sidebar (Profile Header) --- */
+        /* --- Left Sidebar --- */
         .profile-header {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -57,25 +54,19 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            position: sticky; /* Sticks to top when scrolling content */
+            position: sticky;
             top: 2rem;
-            height: calc(100vh - 4rem); /* Full height minus padding */
-            overflow-y: auto; /* Scrollable if screen is short */
+            height: calc(100vh - 4rem);
+            overflow-y: auto;
             box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
         }
 
-        /* Custom Scrollbar for sidebar */
-        .profile-header::-webkit-scrollbar {
-            width: 6px;
-        }
-        .profile-header::-webkit-scrollbar-thumb {
-            background-color: var(--border);
-            border-radius: 4px;
-        }
+        .profile-header::-webkit-scrollbar { width: 6px; }
+        .profile-header::-webkit-scrollbar-thumb { background-color: var(--border); border-radius: 4px; }
 
         .profile-pic {
-            width: 240px; /* INCREASED SIZE */
-            height: 240px; /* INCREASED SIZE */
+            width: 240px;
+            height: 240px;
             border-radius: 50%;
             border: 4px solid var(--primary);
             margin-bottom: 2rem;
@@ -92,24 +83,10 @@
             margin-bottom: 0.5rem;
         }
 
-        h1 {
-            font-size: 3.5rem; /* Larger for landscape */
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-            line-height: 1;
-        }
+        h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 0.5rem; line-height: 1; }
+        h1 span { color: var(--primary); text-shadow: 0 0 15px rgba(56, 189, 248, 0.4); }
 
-        h1 span {
-            color: var(--primary);
-            text-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
-        }
-
-        .hero-desc {
-            font-size: 1.1rem;
-            color: var(--text-main);
-            font-weight: 500;
-            margin-bottom: 2rem;
-        }
+        .hero-desc { font-size: 1.1rem; color: var(--text-main); font-weight: 500; margin-bottom: 2rem; }
 
         .availability-badge {
             background: rgba(34, 197, 94, 0.1);
@@ -136,11 +113,261 @@
             text-decoration: none;
             font-weight: 700;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 1rem;
-            transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
             width: 100%;
             justify-content: center;
+            transition: 0.2s;
         }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            background: #7dd3fc;
+            box-shadow: 0 10px 20px -5px rgba(56, 189, 248, 0.4);
+        }
+
+        /* --- Right Content Area --- */
+        .content-area { display: flex; flex-direction: column; gap: 2rem; }
+
+        .section-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem;
+        }
+
+        h2 {
+            font-size: 1.1rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h2::after { content: ""; flex: 1; height: 1px; background: var(--border); margin-left: 1rem; }
+
+        /* Blog Card */
+        .blog-card {
+            background: var(--bg-dark);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .blog-card:hover { border-color: var(--primary); transform: translateX(5px); }
+
+        .blog-title { font-weight: 700; font-size: 1.3rem; color: #fff; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 10px; }
+        .blog-desc { font-size: 0.95rem; color: var(--text-dim); }
+
+        .icon-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .icon-btn:hover { background: var(--primary); color: var(--bg-dark); }
+
+        /* Projects */
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .project-item {
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.75rem;
+            transition: 0.2s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .project-item.interactive:hover { border-color: var(--primary); transform: translateY(-5px); cursor: pointer; }
+        .tag { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; background: rgba(56, 189, 248, 0.1); color: var(--primary); padding: 4px 10px; border-radius: 6px; }
+        .future-slot { border: 2px dashed var(--border); opacity: 0.5; display: flex; align-items: center; justify-content: center; min-height: 120px; font-family: 'JetBrains Mono'; color: var(--text-dim); }
+
+        /* Roadmap */
+        .progress-container { background: var(--progress-bg); height: 10px; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+        .progress-fill { background: var(--primary); height: 100%; border-radius: 10px; }
+        .cert-link { color: var(--text-main); text-decoration: none; transition: 0.2s; }
+        .cert-link:hover { color: var(--primary); }
+
+        /* Timeline */
+        .timeline { position: relative; padding-left: 2.5rem; border-left: 2px solid var(--border); }
+        .timeline-item { position: relative; margin-bottom: 2.5rem; }
+        .timeline-item::before {
+            content: ""; position: absolute; left: calc(-2.5rem - 9px); top: 6px;
+            width: 16px; height: 16px; border-radius: 50%; background: var(--primary); border: 4px solid var(--bg-card);
+        }
+
+        /* Toolbox */
+        .skills-container { display: flex; flex-wrap: wrap; gap: 1rem; }
+        .skill-badge {
+            background: #0f172a; border: 1px solid var(--border); padding: 0.75rem 1.25rem;
+            border-radius: 10px; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem;
+            color: var(--primary); display: flex; align-items: center; gap: 8px;
+        }
+
+        /* Contact */
+        .contact-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+        .contact-item {
+            background: #0f172a; padding: 1.25rem; border-radius: 12px; border: 1px solid var(--border);
+            text-decoration: none; color: var(--text-main); transition: 0.2s; display: flex; align-items: center; gap: 12px;
+        }
+        .contact-item:hover { border-color: var(--primary); transform: translateY(-2px); }
+
+        @media (max-width: 900px) {
+            .container { grid-template-columns: 1fr; }
+            .profile-header { position: relative; height: auto; top: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <aside class="profile-header">
+            <img src="https://uploads.onecompiler.io/449cnj78x/449cn8zsb/profile.jpg" alt="Negash Ahmed" class="profile-pic">
+            <div class="real-name">Negash Ahmed</div>
+            <h1>I am <span>Niko</span>.</h1>
+            <div class="availability-badge">
+                <i data-lucide="circle" style="fill: var(--accent); width: 10px;"></i> Open to Opportunities
+            </div>
+            <p class="hero-desc">Aspiring Network Engineer & Infrastructure Enthusiast</p>
+            
+            <a href="Negash_Ahmed_IT_Support_CV.pdf" class="download-btn">
+                <i data-lucide="file-text"></i> Download CV
+            </a>
+
+            <div style="margin-top: 2rem; width: 100%; border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; justify-content: center; gap: 15px;">
+                <a href="https://github.com/nikomohamed23" target="_blank" class="icon-btn"><i data-lucide="github"></i></a>
+                <a href="https://www.linkedin.com/in/negash-ahmed-b157672a8/" target="_blank" class="icon-btn"><i data-lucide="linkedin"></i></a>
+                <a href="mailto:saintniko23@gmail.com" class="icon-btn"><i data-lucide="mail"></i></a>
+            </div>
+        </aside>
+
+        <main class="content-area">
+
+            <div class="section-card">
+                <h2><i data-lucide="target"></i> Mission Statement</h2>
+                <p style="font-size: 1.2rem; border-left: 5px solid var(--primary); padding-left: 2rem; font-style: italic;">
+                    "Hi, I’m Niko. I’m building on my background in technical troubleshooting and operational support as I move into a career in IT and networking. My goal is to grow into a role that supports systems people can rely on every day."
+                </p>
+            </div>
+
+            <div class="section-card">
+                <h2><i data-lucide="book-open"></i> Technical Blog</h2>
+                <a href="https://nikodev.wasmer.app/" class="blog-card">
+                    <div>
+                        <div class="blog-title"><i data-lucide="layout"></i> Niko's Tech Blog</div>
+                        <p class="blog-desc">Documenting my journey through A+, N+, CCNA, Homelabs, and Linux.</p>
+                    </div>
+                    <div class="icon-btn"><i data-lucide="arrow-up-right"></i></div>
+                </a>
+            </div>
+
+            <div class="section-card">
+                <h2><i data-lucide="terminal"></i> Network Projects</h2>
+                <div class="project-grid">
+                    <div class="project-item interactive" onclick="window.open('https://github.com/nikomohamed23', '_blank')">
+                        <div class="blog-title" style="font-size: 1.1rem;"><i data-lucide="server"></i> Homelab: Proxmox</div>
+                        <div style="margin: 0.5rem 0 1rem;"><span class="tag">Hypervisor</span> <span class="tag">Linux</span></div>
+                        <p style="font-size: 0.9rem; color: var(--text-dim);">Deployed a Proxmox environment to simulate enterprise networks and testing firewall rules.</p>
+                    </div>
+                    <div class="project-item interactive" onclick="window.open('https://github.com/nikomohamed23', '_blank')">
+                        <div class="blog-title" style="font-size: 1.1rem;"><i data-lucide="shield-check"></i> pfSense Edge</div>
+                        <div style="margin: 0.5rem 0 1rem;"><span class="tag">Routing</span> <span class="tag">VLANs</span></div>
+                        <p style="font-size: 0.9rem; color: var(--text-dim);">Configured custom pfSense router with segregated VLANs for IoT and Lab traffic.</p>
+                    </div>
+                    <div class="project-item future-slot">
+                        <i data-lucide="plus-circle" style="width: 16px; margin-right: 8px;"></i> UPCOMING PROJECT
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <h2><i data-lucide="award"></i> Technical Roadmap</h2>
+                <div style="margin-bottom: 1.5rem;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span style="font-weight: 700;"><a href="#" class="cert-link">CompTIA A+</a></span>
+                        <span class="tag" style="background: var(--accent); color: #fff;">VALIDATED</span>
+                    </div>
+                    <div class="progress-container"><div class="progress-fill" style="width: 100%; background: var(--accent);"></div></div>
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span style="font-weight: 700;"><a href="#" class="cert-link">CompTIA Network+</a></span>
+                        <span class="tag" style="background: var(--accent); color: #fff;">VALIDATED</span>
+                    </div>
+                    <div class="progress-container"><div class="progress-fill" style="width: 100%; background: var(--accent);"></div></div>
+                </div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span style="font-weight: 700;">CompTIA Security+</span>
+                        <span style="font-size: 0.8rem; font-family: 'JetBrains Mono';">1% | Schedule July 2026</span>
+                    </div>
+                    <div class="progress-container"><div class="progress-fill" style="width: 1%;"></div></div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <h2><i data-lucide="wrench"></i> Networking Toolbox</h2>
+                <div class="skills-container">
+                    <span class="skill-badge"><i data-lucide="network"></i> IPv4/IPv6 Subnetting</span>
+                    <span class="skill-badge"><i data-lucide="cpu"></i> DHCP/DNS Management</span>
+                    <span class="skill-badge"><i data-lucide="layers"></i> Hyper-V / Proxmox</span>
+                    <span class="skill-badge"><i data-lucide="search"></i> Packet Analysis</span>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <h2><i data-lucide="briefcase"></i> Career Timeline</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div style="color: var(--primary); font-family: 'JetBrains Mono'; font-weight: 700;">Present</div>
+                        <div style="font-weight: 700; font-size: 1.2rem;">Network Engineering Lab Research</div>
+                        <p style="color: var(--text-dim);">Self-Directed Study | Focusing on CCNA and Virtualization.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div style="color: var(--primary); font-family: 'JetBrains Mono';">2021 — 2024</div>
+                        <div style="font-weight: 700; font-size: 1.2rem;">Customer Service Specialist</div>
+                        <p style="color: var(--text-dim);">Citgo / 7-Eleven | High-pressure troubleshooting.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <h2><i data-lucide="send"></i> Let's Connect</h2>
+                <div class="contact-grid">
+                    <a href="mailto:nikomohamed23@gmail.com" class="contact-item">
+                        <i data-lucide="mail"></i>
+                        <span style="font-size: 0.9rem;">nikomohamed23@gmail.com</span>
+                    </a>
+                    <a href="tel:2027134709" class="contact-item">
+                        <i data-lucide="phone"></i>
+                        <span style="font-size: 0.9rem;">202-713-4709</span>
+                    </a>
+                </div>
+            </div>
+
+            <footer>© 2026 Negash Ahmed (Niko)</footer>
+        </main>
+    </div>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>
 
         .download-btn:hover {
             transform: translateY(-2px);
