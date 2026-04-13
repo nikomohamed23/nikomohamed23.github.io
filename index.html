@@ -7,7 +7,7 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
     <style>
         :root {
             --bg-dark: #0f172a;
@@ -468,6 +468,59 @@
 
             h1 { font-size: 2.5rem; }
         }
+
+/* === Cert Links Fix === */
+.cert-link {
+    color: var(--text-main);
+    text-decoration: none;
+    font-family: inherit;
+    font-weight: inherit;
+    transition: 0.2s;
+}
+
+.cert-link:visited {
+    color: var(--text-main);
+}
+
+.cert-link:hover {
+    color: var(--primary);
+}
+
+/* === Cert Layout Fix === */
+.cert-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* === Icon Consistency === */
+i[data-lucide] {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2;
+    flex-shrink: 0;
+}
+
+/* === Mobile Fix === */
+@media (max-width: 640px) {
+    .cert-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cert-status,
+    .cert-header .tag {
+        text-align: left;
+    }
+
+    .cert-name {
+        font-size: 1rem !important;
+    }
+}
+
+
+        
     </style>
 </head>
 <body>
@@ -584,7 +637,53 @@
                 </div>
                 <p style="text-align: right; margin-top: 1.5rem; font-size: 0.9rem;">
                     <a href="https://github.com/nikomohamed23" target="_blank" style="color: var(--primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 5px;">
-                        View More Documentation on GitHub <i data-lucide="external-link" style="width: 14px;"></i>
+                        View More Documentation on GitHub <i data-luci<div class="section-card">
+    <h2><i data-lucide="award"></i> Technical Roadmap</h2>
+
+    <div class="cert-progress-wrapper" style="margin-bottom: 2rem;">
+        <div class="cert-header" style="margin-bottom: 0.5rem;">
+            <span class="cert-name" style="font-weight: 700; font-size: 1.1rem;">
+                <a href="https://www.credly.com/badges/23ff4c63-6888-4fd5-9e4e-23deeeb109d9" target="_blank" rel="noopener noreferrer" class="cert-link">
+                    CompTIA A+
+                </a>
+            </span>
+            <span class="tag" style="background: var(--accent); color: #fff;">VALIDATED</span>
+        </div>
+        <div class="progress-container">
+            <div class="progress-fill" style="width: 100%; background: var(--accent);"></div>
+        </div>
+    </div>
+
+    <div class="cert-progress-wrapper" style="margin-bottom: 2rem;">
+        <div class="cert-header" style="margin-bottom: 0.5rem;">
+            <span class="cert-name" style="font-weight: 700; font-size: 1.1rem;">
+                <a href="https://www.credly.com/badges/11c195e9-9580-4e0c-b49c-c3e26c184252" target="_blank" rel="noopener noreferrer" class="cert-link">
+                    CompTIA Network+
+                </a>
+            </span>
+            <span class="tag" style="background: var(--accent); color: #fff;">VALIDATED</span>
+        </div>
+        <div class="progress-container">
+            <div class="progress-fill" style="width: 100%; background: var(--accent);"></div>
+        </div>
+    </div>
+
+    <div class="cert-progress-wrapper" style="margin-bottom: 2rem;">
+        <div class="cert-header" style="margin-bottom: 0.5rem;">
+            <span class="cert-name" style="font-weight: 700; font-size: 1.1rem;">
+                CompTIA Security+
+            </span>
+            <span class="cert-status" style="font-size: 0.85rem; font-family: 'JetBrains Mono', monospace;">
+                1% | Schedule July 3/2026
+            </span>
+        </div>
+        <div class="progress-container">
+            <div class="progress-fill" style="width: 1%;"></div>
+        </div>
+    </div>
+
+    <div class="cert-progress-wrapper"></div>
+                        </div>de="external-link" style="width: 14px;"></i>
                     </a>
                 </p>
             </div>
@@ -607,10 +706,11 @@
 <!-- Roadmap & Certs -->
 <div class="section-card">
     <h2><i data-lucide="award"></i> Technical Roadmap</h2>
-   <div class="cert-progress-wrapper" style="margin-bottom: 2rem;">
-        <div class="cert-header" style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+
+    <div class="cert-progress-wrapper" style="margin-bottom: 2rem;">
+        <div class="cert-header" style="margin-bottom: 0.5rem;">
             <span class="cert-name" style="font-weight: 700; font-size: 1.1rem;">
-                <a href="https://www.credly.com/your-profile-link" target="_blank" rel="noopener noreferrer" class="cert-link">
+                <a href="https://www.credly.com/badges/23ff4c63-6888-4fd5-9e4e-23deeeb109d9" target="_blank" rel="noopener noreferrer" class="cert-link">
                     CompTIA A+
                 </a>
             </span>
@@ -622,9 +722,9 @@
     </div>
 
     <div class="cert-progress-wrapper" style="margin-bottom: 2rem;">
-        <div class="cert-header" style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+        <div class="cert-header" style="margin-bottom: 0.5rem;">
             <span class="cert-name" style="font-weight: 700; font-size: 1.1rem;">
-                <a href="https://www.credly.com/your-profile-link" target="_blank" rel="noopener noreferrer" class="cert-link">
+                <a href="https://www.credly.com/badges/11c195e9-9580-4e0c-b49c-c3e26c184252" target="_blank" rel="noopener noreferrer" class="cert-link">
                     CompTIA Network+
                 </a>
             </span>
@@ -636,18 +736,21 @@
     </div>
 
     <div class="cert-progress-wrapper" style="margin-bottom: 2rem;">
-        <div class="cert-header" style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+        <div class="cert-header" style="margin-bottom: 0.5rem;">
             <span class="cert-name" style="font-weight: 700; font-size: 1.1rem;">
-                <a href="https://www.credly.com/your-profile-link" target="_blank" rel="noopener noreferrer" class="cert-link">
-                    CompTIA Security+
-                </a>
+                CompTIA Security+
             </span>
-            <span class="cert-status" style="font-size: 0.85rem; font-family: 'JetBrains Mono';">1% | Schedule July 3/2026</span>
+            <span class="cert-status" style="font-size: 0.85rem; font-family: 'JetBrains Mono', monospace;">
+                1% | Schedule July 3/2026
+            </span>
         </div>
         <div class="progress-container">
             <div class="progress-fill" style="width: 1%;"></div>
         </div>
     </div>
+
+    <div class="cert-progress-wrapper"></div>
+</div>
 
     <!-- hidden div added here -->
     <div class="cert-progress-wrapper"></div>
